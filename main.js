@@ -59,7 +59,7 @@ function culqi() {
 function dataResponse(data){
     let rp = data;
     $('.rp').html(`
-        Monto: S/${(rp.amount)} <br>
+        Monto: S/${(rp.amount/10)} <br>
         Descripción: ${rp.description} <br>
         Email: ${rp.email} <br>
         Id del cargo: ${rp.id} <br>
@@ -68,8 +68,8 @@ function dataResponse(data){
         Número de tarjeta: ${rp.source.card_number} <br>
         País de origen de compra: ${rp.source.client.ip_country} <br>
         Banco: ${rp.source.iin.issuer.name} <br>
-        Comisión de Culqi: S/${rp.total_fee} <br>
-        Monto bruto a transferir: S/${rp.transfer_amount} <br>
+        Comisión de Culqi: S/${(rp.total_fee/10)} <br>
+        Monto bruto a transferir: S/${(rp.transfer_amount/10)} <br>
         <i>Puede ver la respuesta en la consola</i>
         `
     );

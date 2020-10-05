@@ -5,7 +5,7 @@ producto = $('#buyButton').attr('data-producto');
 precio = '1000';
 
 //Capturar el evento click del boton Pagar
-$('#buyButton').on('click', function (e) {
+$('#buyButton').on('click', function(e) {
     Culqi.settings({
         title: 'Compra de Paquetes',
         currency: 'PEN',
@@ -35,14 +35,14 @@ function culqi() {
             },
             dataType: 'json',
             // contentType: "application/json; charset=utf-8",
-            success: function (data) {
+            success: function(data) {
                 console.log(JSON.parse(JSON.stringify(data)));
-                if(data.outcome.type == "venta_exitosa"){
+                if (data.outcome.type == "venta_exitosa") {
                     alert('La transacción se ha realizado con éxito');
                     dataResponse(data);
                 }
             },
-            error: function (error) {
+            error: function(error) {
                 document.write(error.responseText);
             }
         });
@@ -56,10 +56,10 @@ function culqi() {
 };
 
 //Mostrar datos de respuesta
-function dataResponse(data){
+function dataResponse(data) {
     let rp = data;
     $('.rp').html(`
-        Monto: S/${(rp.amount/10)} <br>
+        Monto: S/${(rp.amount/100)} <br>
         Descripción: ${rp.description} <br>
         Email: ${rp.email} <br>
         Id del cargo: ${rp.id} <br>
@@ -68,9 +68,8 @@ function dataResponse(data){
         Número de tarjeta: ${rp.source.card_number} <br>
         País de origen de compra: ${rp.source.client.ip_country} <br>
         Banco: ${rp.source.iin.issuer.name} <br>
-        Comisión de Culqi: S/${(rp.total_fee/10)} <br>
-        Monto bruto a transferir: S/${(rp.transfer_amount/10)} <br>
+        Comisión de Culqi: S/${(rp.total_fee/100)} <br>
+        Monto bruto a transferir: S/${(rp.transfer_amount/100)} <br>
         <i>Puede ver la respuesta en la consola</i>
-        `
-    );
+        `);
 };
